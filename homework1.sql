@@ -40,7 +40,7 @@ JOIN inventory i
 	ON f.film_id = i.film_id
 JOIN rental r
 	ON r.inventory_id = i.inventory_id
-WHERE r.customer_id = 11;
+WHERE r.customer_id = 11 AND r.return_date IS NULL;
 
 
 # 5) What movies are categorized as Animations?
@@ -55,17 +55,7 @@ JOIN category s
     
     
 #6) What did PAULA BRYANT  (customer id 95) pay to rent the movie CLOSER BANG?
-SELECT
-SUM(p.amount)
-FROM payment p
-JOIN rental r
-	ON r.customer_id = p.customer_id
-JOIN inventory i
-	ON r.inventory_id = i.inventory_id
-JOIN film f
-	ON f.film_id = i.film_id
-WHERE r.customer_id = 95 AND f.title = 'CLOSER BANG';
-
+SELECT rental_rate FROM film WHERE title = 'CLOSER BANG';
 
 
 #7) What is the first and last name of the staff who rented the move CHAINSAW UPTOWN to MARIE TURNER?
